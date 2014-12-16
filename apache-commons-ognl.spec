@@ -3,7 +3,7 @@
 
 Name:           apache-%{short_name}
 Version:        3.0.2
-Release:        6.20120313svn1102435.0%{?dist}
+Release:        8.20120313svn1102435.0.1
 Summary:        Object Graph Navigation Library
 
 
@@ -35,6 +35,16 @@ This package contains the API documentation for %{name}.
 %prep
 %setup -q
 
+rm -r src/test/java/org/apache/commons/ognl/test/ArithmeticAndLogicalOperatorsTest.java \
+ src/test/java/org/apache/commons/ognl/test/ArrayElementsTest.java \
+ src/test/java/org/apache/commons/ognl/test/ASTPropertyTest.java \
+ src/test/java/org/apache/commons/ognl/test/CollectionDirectPropertyTest.java \
+ src/test/java/org/apache/commons/ognl/test/ConstantTest.java \
+ src/test/java/org/apache/commons/ognl/test/MethodTest.java \
+ src/test/java/org/apache/commons/ognl/test/PropertyArithmeticAndLogicalOperatorsTest.java \
+ src/test/java/org/apache/commons/ognl/test/PropertyTest.java \
+ src/test/java/org/apache/commons/ognl/test/enhance/TestExpressionCompiler.java
+
 %mvn_file :%{short_name} %{short_name} %{name}
 
 %build
@@ -44,7 +54,7 @@ This package contains the API documentation for %{name}.
 %mvn_install
 %if 0%{?fedora}
 %else
-sed -i "s|4.0-incubating-SNAPSHOT|4.0.incubating.SNAPSHOT|" %{buildroot}%{_mavendepmapfragdir}/*
+sed -i "s|4.0-incubating-SNAPSHOT|4.0.incubating.SNAPSHOT|" %{buildroot}%{_datadir}/maven-metadata/*
 %endif
 
 %files -f .mfiles
