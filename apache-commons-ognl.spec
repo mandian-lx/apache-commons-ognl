@@ -19,6 +19,7 @@ BuildRequires: jpackage-utils
 BuildRequires: maven-local
 BuildRequires: javassist
 BuildRequires: jna
+BuildRequires: mvn(org.apache.maven.plugins:maven-site-plugin)
 
 %description
 OGNL is an expression language for getting and setting properties of
