@@ -46,6 +46,9 @@ rm -r src/test/java/org/apache/commons/ognl/test/ArithmeticAndLogicalOperatorsTe
  src/test/java/org/apache/commons/ognl/test/PropertyTest.java \
  src/test/java/org/apache/commons/ognl/test/enhance/TestExpressionCompiler.java
 
+# fix version in pom.xml
+%pom_xpath_replace "pom:project/pom:version" "<version>4.0.incubating.SNAPSHOT</version>" ./pom.xml
+
 %mvn_file :%{short_name} %{short_name} %{name}
 
 %build
@@ -53,10 +56,6 @@ rm -r src/test/java/org/apache/commons/ognl/test/ArithmeticAndLogicalOperatorsTe
 
 %install
 %mvn_install
-%if 0%{?fedora}
-%else
-sed -i "s|4.0-incubating-SNAPSHOT|4.0.incubating.SNAPSHOT|" %{buildroot}%{_datadir}/maven-metadata/*
-%endif
 
 %files -f .mfiles
 %doc LICENSE.txt NOTICE.txt
